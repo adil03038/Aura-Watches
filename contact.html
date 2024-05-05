@@ -181,31 +181,31 @@
 
 
                     <input type="name" name="First Name" value="" placeholder="  YOUER NAME*"
-                        class="form-control"><br><br>
+                        class="form-control" id="firstName"><br><br>
 
 
 
                     <input type="name" name="First Name" value="" placeholder="  YOUR EMAIL*"
-                        class="form-control"><br><br>
+                        class="form-control" id="email"><br><br>
 
 
 
 
                     <input type="name" name="First Name" value="" placeholder="  YOUR PHONE*"
-                        class="form-control"><br><br>
+                        class="form-control" id="phone"><br><br>
 
 
                 </div>
                 <div class="col-lg-6 col-sm-12">
 
-                    <textarea name="" id="" cols="32" rows="8" placeholder="YOUR MESSAGE"
+                    <textarea name="" id="message" cols="32" rows="8" placeholder="YOUR MESSAGE"
                         class="form-control"></textarea>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <input type="submit" value="SEND MESSAGE" class="buttons"><br><br>
+                    <input type="submit" value="SEND MESSAGE" class="buttons" id="submitbtn"><br><br>
                 </div>
             </div>
         </div>
@@ -288,6 +288,38 @@
     <!-- Footer Section End -->
 
     <script src="js/email.js"></script>
+    <script>
+        const submit = document.getElementById("submitbtn");
+    
+        submit.onclick = () => {
+            // Get the current values of the form fields
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+    
+            // Define regular expressions for validating the form fields
+            const nameRegex = /^[a-zA-Z-' ]+$/;
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            const phoneRegex = /^[0-9]{10}$/;
+            const messageRegex = /.+/;
+    
+            // Check if the form fields are valid using the regular expressions
+            if (
+                nameRegex.test(firstName) &&
+                emailRegex.test(email) &&
+                phoneRegex.test(phone) &&
+                messageRegex.test(message)
+            ) {
+                // If the form fields are valid, display an alert message
+                alert('Your message has been sent successfully!');
+            } else {
+                // If the form fields are not valid, display an alert message
+                alert('Please provide proper information.');
+            }
+        }
+    </script>
+    
 </body>
 
 </html>
